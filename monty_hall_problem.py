@@ -17,16 +17,13 @@ def main(iterations):
     return
 
 
-def montey_hall_test():
+def montey_hall_test() -> int:
     doors = ['Door One', 'Door Two', 'Door Three']
     winning_door = choose_a_door(doors)
     guests_choice = choose_a_door(doors)
     hosts_reveal = host_opens_door(winning_door, guests_choice, doors)
     guests_choice = guest_chooses_other_option(guests_choice, hosts_reveal, doors)
-    if guests_choice == winning_door:
-        return 1
-    else:
-        return 0
+    return int(guests_choice == winning_door)
 
 
 def choose_a_door(doors: list) -> str:
@@ -34,14 +31,14 @@ def choose_a_door(doors: list) -> str:
     return doors[chosen]
 
 
-def host_opens_door(winning_door: str, guests_choice: str, doors: list):
+def host_opens_door(winning_door: str, guests_choice: str, doors: list) -> str:
     candidates = doors[:]
     candidates = remove_choice_if_exists(winning_door, candidates)
     candidates = remove_choice_if_exists(guests_choice, candidates)
     return choose_a_door(candidates)
 
 
-def guest_chooses_other_option(guests_choice: str, hosts_reveal: str, doors: list):
+def guest_chooses_other_option(guests_choice: str, hosts_reveal: str, doors: list) -> str:
     doors.remove(guests_choice)
     doors.remove(hosts_reveal)
     return doors[0]
