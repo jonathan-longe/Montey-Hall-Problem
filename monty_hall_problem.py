@@ -22,7 +22,7 @@ def montey_hall_test():
     winning_door = choose_a_door(doors)
     guests_choice = choose_a_door(doors)
     hosts_reveal = host_opens_door(winning_door, guests_choice, doors)
-    guests_choice = guest_changes_mind(guests_choice, hosts_reveal, doors)
+    guests_choice = guest_chooses_other_option(guests_choice, hosts_reveal, doors)
     if guests_choice == winning_door:
         return 1
     else:
@@ -41,7 +41,7 @@ def host_opens_door(winning_door: str, guests_choice: str, doors: list):
     return choose_a_door(candidates)
 
 
-def guest_changes_mind(guests_choice: str, hosts_reveal: str, doors: list):
+def guest_chooses_other_option(guests_choice: str, hosts_reveal: str, doors: list):
     doors.remove(guests_choice)
     doors.remove(hosts_reveal)
     return doors[0]
